@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftHUD - برنامجك الأسرع للكمبيوتر والألعاب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --card-bg: #161b22;
+            --text: #c9d1d9;
+            --primary: #58a6ff;
+            --secondary: #8957e5;
+            --green: #238636;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(88,166,255,0.1) 0%, rgba(13,17,23,1) 100%);
+        }
+        h1 { font-size: 3rem; color: #fff; margin-bottom: 10px; }
+        .subtitle { font-size: 1.2rem; color: var(--primary); margin-bottom: 40px; }
+        .btn {
+            display: inline-block;
+            background-color: var(--green);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4);
+        }
+        .btn:hover {
+            background-color: #2ea043;
+            transform: translateY(-3px);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            transition: border-color 0.3s;
+        }
+        .feature-card:hover { border-color: var(--primary); }
+        .feature-card h3 { color: #fff; margin-top: 0; }
+        footer { text-align: center; padding: 40px; margin-top: 60px; border-top: 1px solid #30363d; }
+        footer a { color: var(--primary); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SwiftHUD</h1>
+        <div class="subtitle">برنامجك السريع لإحصائيات الكمبيوتر، تنظيف النظام، ونقل الألعاب</div>
+        
+        <!-- رابط التحميل: هيروح تلقائياً لآخر إصدار (Latest Release) -->
+        <a href="https://github.com/I-Solstice/SwiftHUD/releases/latest/download/SwiftHUD.exe" class="btn">تحميل البرنامج الآن (Windows)</a>
+        <p style="font-size: 0.9rem; color: #8b949e; margin-top: 15px;">النسخة مفتوحة المصدر | مجاني بالكامل</p>
+    </header>
+
+    <div class="container">
+        <h2 style="text-align: center; color: #fff;">ليه تستخدم SwiftHUD؟</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>🖥️ نافذة عائمة ذكية (HUD)</h3>
+                <p>اعرف استهلاك المعالج، كرت الشاشة، الحرارة، والطقس، وتتحكم في الميديا (Spotify) من شاشة صغيرة وانت بتلعب.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚀 نقل الألعاب بضغطة زر</h3>
+                <p>خلصت مساحة الـ C؟ انقل ألعابك وبرامجك لدرايف تاني من غير ما تعيد تحميلها بفضل تقنية Directory Junctions.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧹 تنظيف عميق وآمن</h3>
+                <p>تخلص من الملفات المؤقتة، كاش المتصفحات، وسلة المحذوفات، مع تحسين استهلاك الرام بدون إعلانات مزعجة.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <h2 style="color: #fff;">صنع بواسطة SoslticeDeveloper</h2>
+            <p>تابع القناة عشان تشوف الشروحات والتحديثات الجديدة</p>
+            <!-- حط لينك قناتك هنا بدل علامة # -->
+            <a href="https://youtube.com/@dev.solstice?si=NQjIqcK_vL9hXjOZ" class="btn" style="background-color: var(--secondary); box-shadow: 0 4px 15px rgba(137, 87, 229, 0.4);">زيارة القناة</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>SwiftHUD &copy; 2025 | مفتوح المصدر تحت رخصة MIT</p>
+        <p><a href="https://github.com/I-Solstice/SwiftHUD">زيارة مستودع GitHub</a></p>
+    </footer>
+
+</body>
+</html>
