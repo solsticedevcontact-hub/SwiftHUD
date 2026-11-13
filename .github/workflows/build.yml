@@ -1,0 +1,49 @@
+name: Build SwiftHUD EXE
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Build EXE
+        run: >
+          pyinstaller --noconfirm --onefile --windowed --uac-admin
+          --name SwiftHUD --version-file version_info.txt
+          --collect-all customtkinter swifthud.py
+
+      - name: Sign EXE (self-signed, SoslticeDeveloper)
+        shell: pwsh
+        run: |
+          $cert = New-SelfSignedCertificate -Type CodeSigningCert -Subject "CN=SoslticeDeveloper" `
+                  -CertStoreLocation Cert:\CurrentUser\My -NotAfter (Get-Date).AddYears(5)
+          Set-AuthenticodeSignature -FilePath dist\SwiftHUD.exe -Certificate $cert `
+                  -HashAlgorithm SHA256 -TimestampServer "http://timestamp.digicert.com"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SwiftHUD-exe
+          path: dist/SwiftHUD.exe
+
+      - name: Attach to GitHub Release (on tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/SwiftHUD.exe
