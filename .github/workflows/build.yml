@@ -1,9 +1,5 @@
-      - name: Build EXE
-        run: >
-          pyinstaller --noconfirm --onefile --windowed --uac-admin
-          --name SwiftHUD --version-file version_info.txt
-          --collect-all customtkinter --collect-all GPUtil --collect-all keyboard
-          swifthud.py
+name: Build SwiftHUD EXE
+
 on:
   push:
     branches: [ main, master ]
@@ -30,24 +26,11 @@ jobs:
         run: >
           pyinstaller --noconfirm --onefile --windowed --uac-admin
           --name SwiftHUD --version-file version_info.txt
-          --collect-all customtkinter swifthud.py
-
-      - name: Sign EXE (self-signed, SoslticeDeveloper)
-        shell: pwsh
-        run: |
-          $cert = New-SelfSignedCertificate -Type CodeSigningCert -Subject "CN=SoslticeDeveloper" `
-                  -CertStoreLocation Cert:\CurrentUser\My -NotAfter (Get-Date).AddYears(5)
-          Set-AuthenticodeSignature -FilePath dist\SwiftHUD.exe -Certificate $cert `
-                  -HashAlgorithm SHA256 -TimestampServer "http://timestamp.digicert.com"
+          --collect-all customtkinter --collect-all GPUtil --collect-all keyboard
+          swifthud.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: SwiftHUD-exe
           path: dist/SwiftHUD.exe
-
-      - name: Attach to GitHub Release (on tag)
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist/SwiftHUD.exe
