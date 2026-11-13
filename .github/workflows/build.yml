@@ -1,5 +1,9 @@
-name: Build SwiftHUD EXE
-
+      - name: Build EXE
+        run: >
+          pyinstaller --noconfirm --onefile --windowed --uac-admin
+          --name SwiftHUD --version-file version_info.txt
+          --collect-all customtkinter --collect-all GPUtil --collect-all keyboard
+          swifthud.py
 on:
   push:
     branches: [ main, master ]
